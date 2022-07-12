@@ -23,6 +23,7 @@ class MainScreenState extends State {
   @override
   void initState() {
     getCategoriesFromApi();
+    getProducts();
   }
 
   @override
@@ -80,6 +81,16 @@ class MainScreenState extends State {
         padding: EdgeInsets.all(20),
       ),
     );
+  }
+
+  void getProducts() {
+    ProductApi.getProducts().then((response) {
+      setState(() {
+        Iterable list = jsonDecode(response.body);
+        this.products =
+            list.map((product) => Product.fromJson(product)).toList();
+      });
+    });
   }
 
   void getProductsByCategoryId(Category category) {

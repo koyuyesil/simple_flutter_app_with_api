@@ -21,7 +21,7 @@ class Product {
     //double.tryparse sadece string kabul eder.
     //oyuzden veri içinde bozukluk varsa örneğin rakam da varsa stringe çevir.
     //tabiki gerçek veri tabanında söz konusu olmaz.
-    unitsInStock = json["unitsInStock"];
+    unitsInStock = int.tryParse(json["unitsInStock"].toString())!;
   }
   Map toJson() {
     return {
