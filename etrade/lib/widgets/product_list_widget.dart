@@ -19,12 +19,21 @@ class ProductListWidgetState extends State<ProductListWidget> {
   }
 
   Widget buildProductList(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: widget.products.length,
-          itemBuilder: (context, index) {
-            return Text(widget.products[index].productName);
-          }),
+    return Column(
+      children: [
+        SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          height: 500,
+          child: GridView.count(
+            crossAxisCount: 2,
+            children: List.generate(widget.products.length, (index) {
+              return ProductListRowWidget(widget.products[index]);
+            }),
+          ),
+        ),
+      ],
     );
   }
 }
