@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 
 import '../models/category.dart';
 import '../models/product.dart';
+import '../widgets/product_list_widget.dart';
 
 class MainScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return StatefulWidgetState();
+    return MainScreenState();
   }
 }
 
-class StatefulWidgetState extends State {
+class MainScreenState extends State {
   List<Category> categories = <Category>[];
   List<Widget> categoryWidgets = <Widget>[];
   List<Product> products = <Product>[];
@@ -42,7 +43,8 @@ class StatefulWidgetState extends State {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: categoryWidgets,
-              ))
+              )),
+          ProductListWidget(products)
         ]),
       ),
     );
@@ -86,14 +88,7 @@ class StatefulWidgetState extends State {
         Iterable list = jsonDecode(response.body);
         this.products =
             list.map((product) => Product.fromJson(product)).toList();
-        getProductWidgets();
       });
     });
   }
-
-  void getProductWidgets() {
-    getProductWiget();
-  }
-
-  void getProductWiget() {}
 }

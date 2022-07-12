@@ -1,11 +1,14 @@
 import 'package:http/http.dart' as http;
 
+// const String host = "localhost"; //windows app
+const String host = "10.0.2.2"; //host ip for emulator
+
 class CategoryApi {
-  static Future getCategories() async {
-    return await http.get(Uri.parse("http://localhost:3000/categories"));
+  static Future getCategories() {
+    return http.get(Uri.parse("http://$host:3000/categories"));
   }
 
-  static Future getCategoriesById(int id) async {
-    return await http.get(Uri.parse("http://10.0.0.2:3000/categories?id=$id"));
+  static Future getCategoryById(int id) {
+    return http.get(Uri.parse("http://$host:3000/categories/$id"));
   }
 }

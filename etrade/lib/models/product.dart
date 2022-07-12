@@ -10,11 +10,17 @@ class Product {
       this.unitPrice, this.unitsInStock);
 
   Product.fromJson(Map json) {
+    //json formatından gelen veri öncelikle türüne uygulanır.
+    //bu sepele
     id = json["id"];
     categoryId = json["categoryId"];
     productName = json["productName"];
     quantityPerUnit = json["quantityPerUnit"];
-    unitPrice = json["unitPrice"];
+    unitPrice = double.tryParse(json["unitPrice"].toString())!;
+    //burayı iyi yakala.
+    //double.tryparse sadece string kabul eder.
+    //oyuzden veri içinde bozukluk varsa örneğin rakam da varsa stringe çevir.
+    //tabiki gerçek veri tabanında söz konusu olmaz.
     unitsInStock = json["unitsInStock"];
   }
   Map toJson() {
